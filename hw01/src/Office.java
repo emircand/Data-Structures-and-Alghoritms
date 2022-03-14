@@ -1,3 +1,6 @@
+/**
+ * Office sub class extends Buildings super class
+ */
 public class Office extends Buildings{
     private String jobType;
     private String owner;
@@ -10,6 +13,15 @@ public class Office extends Buildings{
         side = 1;
     }
 
+    /**
+     * class constructor specified by parameters
+     * @param jobType job type of Office
+     * @param owner owner of Office
+     * @param side  location side on the street
+     * @param position  location position on the street
+     * @param height height of Office
+     * @param length length of Office
+     */
     Office(String jobType, String owner,
     String side, int position, int height, int length){
         this.jobType = jobType;
@@ -31,6 +43,11 @@ public class Office extends Buildings{
         return owner;
     }
 
+    /**
+     * Overriden abstract Focusing method
+     * give the information of job type for Office
+     */
+    @Override
     public void Focusing(){
         System.out.println("Job Type of the office: " + getJobType());
     }

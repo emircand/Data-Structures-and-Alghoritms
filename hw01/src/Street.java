@@ -1,38 +1,75 @@
+import java.io.IOException;
+
+/**
+ * Street is a seperated class from the others which contain instances of Buildings 
+ */
 public class Street {
     private Buildings[] streetArray;
     private int streetLength;
     private int numberOfBuildings;
 
+    /**
+     * Class constructor
+     */
     Street(){
         streetLength = 30;
         streetArray = new Buildings[1];
         numberOfBuildings = 0;
     }
 
+    /**
+     * Class constructor specifying length of all sides for Street
+     * @param streetLength set by user 
+     */
     Street(int streetLength){
-        this.streetLength = streetLength;
+        if(streetLength <= 0)
+            throw new ArrayIndexOutOfBoundsException("ERROR: street length must be positive integer!!");
+        else this.streetLength = streetLength;
+        
         streetArray = new Buildings[1];
         numberOfBuildings = 0;
     }
 
+    /**
+     * getter method for streetLength variable
+     * @return length of the street
+     */
     public int getStreetLength() {
         return streetLength;
     }
 
+    /**
+     * set method for streetLength variable
+     * @param streetLength
+     */
     public void setStreetLength(int streetLength) {
         this.streetLength = streetLength;
     }
 
+    /**
+     * get method for streetArray
+     * @return Buildings Array
+     */
     public Buildings[] getStreetArray() {
         return streetArray;
     }
 
+    /**
+     * set method for streetArray
+     * @param streetArray
+     */
     public void setStreetArray(Buildings[] streetArray) {
         this.streetArray = streetArray;
     }
     
+    /**
+     * add method to add new Buildings class instance to the streetArray
+     * @param that instance of Buildings
+     */
     public void add(Buildings that){
-        if(!isStreetFull(that)){
+        if(that.getLength() > getStreetLength())
+            throw new ArrayIndexOutOfBoundsException("ERROR: building couldn't fit in the street");
+        else if(!isStreetFull(that)){
             numberOfBuildings++;
             Buildings[] temp = new Buildings[numberOfBuildings];
             for (int j = 0; j < streetArray.length; j++) {
@@ -44,7 +81,13 @@ public class Street {
         }
     }
 
-    
+    /**
+     * Control method for Street Class
+     * if street is full with buildings or buildings don't fit in Street
+     * method returns false; return true in other conditions
+     * @param that Building instance which will be checked by method
+     * @return  true or false according to the method output
+     */
     public Boolean isStreetFull(Buildings that){
         int sum = 0;
         if(numberOfBuildings == 0) return false;
@@ -65,6 +108,10 @@ public class Street {
         return false;
     }
 
+    /**
+     * choose an object an delete from the Street
+     * @param that Buildings instance which will be deleted
+     */
     public void delete(Buildings that){
         int index = -1;
         for (int i = 0; i < streetArray.length; i++) {
@@ -86,12 +133,42 @@ public class Street {
     }
 
     /**
+     * overloaded method version of delete method
+     * @param position
+     * @param side
+     */
+    public void delete(int position, int side){
+        int index = -1;
+        if(position >= getStreetLength())
+            throw new ArrayIndexOutOfBoundsException("entered position is not in bounds of street");
+        for (int i = 0; i < streetArray.length; i++) {
+            if(streetArray[i].getPosition() <= position && 
+            streetArray[i].getPosition() + streetArray[i].getLength() >= position &&
+            streetArray[i].getSide() == side)
+                index = i;
+        }
+        if(index != -1){    
+            Buildings[] temp = new Buildings[--numberOfBuildings];
+            String className = new String(streetArray[index].getClass().getName());
+            for (int i = 0; i < streetArray.length; i++) {
+                if(i < index)
+                    temp[i] = streetArray[i];
+                if(i >= index && i < numberOfBuildings)
+                    temp[i] = streetArray[i+1]; 
+            }
+            setStreetArray(temp);
+            System.out.println(className + " Succesfully deleted");
+        }
+        else System.err.println("ERROR: the position is already empty!!!");
+    }
+
+    /**
      * display the total remaining length of lands on the street
      * 
      * total lengths of both sides subtracting the sum of occupied lengths on both sides of the street  
      */
     public void RemainingLength(){
-        System.out.println("-------the total remaining length of lands on the stree-------");
+        System.out.println("-------the total remaining length of lands on the street-------");
         int rightSum = 0;
         int leftSum = 0;
         for (int i = 0; i < streetArray.length; i++) {
@@ -156,8 +233,9 @@ public class Street {
         System.out.println("total lengths of HMO's: " + sum);
     }
 
-
-    
+    /**
+     * Display the skyline silhouette of the street
+     */
     public void DisplaySilhoutte(){
         System.out.println("-------street silhouette-------");
         int maxHeight = 0;
@@ -170,6 +248,12 @@ public class Street {
         
     }
 
+    /**
+     * helper method for DisplaySilhoutte method
+     * which converts street view to the 2D array
+     * that includes top corner of every Building instance
+     * @param maxHeight to create 2D array
+     */
     public void Fill(int maxHeight){
         String[][] silhouette = new String[maxHeight+2][getStreetLength()+2];
 
@@ -205,6 +289,11 @@ public class Street {
 
     }
 
+    /**
+     * helper method for DisplaySilhoutte method
+     * that completes silhouette view
+     * @param silhouette 2D array which includes corners of Buildings
+     */
     public void Draw(String[][] silhouette){
         
         for (int i = 0; i < silhouette.length; i++) {
