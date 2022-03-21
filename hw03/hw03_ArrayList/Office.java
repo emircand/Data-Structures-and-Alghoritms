@@ -1,4 +1,5 @@
-package com.emircand.ArrayList;
+
+
 
 /**
  * Office sub class extends Buildings super class
@@ -44,5 +45,14 @@ public class Office extends Buildings{
     @Override
     public void Focusing(){
         System.out.println("Job Type of the office: " + getJobType());
+    }
+    
+    /**
+     * Overridden abstract getName method
+     * give the name of Class
+     */
+    @Override
+    public String getName() {
+    	return String.format("Office");
     }
 }

@@ -1,4 +1,3 @@
-package com.emircand.ArrayList;
 
 /**
  * abstract Super Class of the subclasses (Market, House, Office and Playground)
@@ -13,6 +12,11 @@ public abstract class Buildings {
      * abstract Focusing method to override at subclass
      */
     abstract void Focusing();
+    
+    /**
+     * abstract getName method to override at subclass
+     * */
+    abstract String getName();
     
     /**
      * get method for position variable

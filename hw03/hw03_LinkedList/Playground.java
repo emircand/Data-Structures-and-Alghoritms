@@ -1,4 +1,3 @@
-package com.emircand.ArrayList;
 
 /**
  * Playground subclass extends Buildings superclass
@@ -29,5 +28,14 @@ public class Playground extends Buildings{
     @Override
     public void Focusing(){
         System.out.println("length of the playground: " + getLength());
+    }
+    
+    /**
+     * Overridden abstract getName method
+     * give the name of Class
+     */
+    @Override
+    public String getName() {
+    	return String.format("Playground");
     }
 }

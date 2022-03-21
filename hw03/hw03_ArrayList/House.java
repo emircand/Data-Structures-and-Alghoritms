@@ -1,4 +1,5 @@
-package com.emircand.ArrayList;
+
+
 
 /**
  * House subclass extends Buildings superclass
@@ -57,12 +58,21 @@ public class House extends Buildings{
     }
 
     /**
-     * Overriden abstract Focusing method
+     * Overridden abstract Focusing method
      * give the information of owner for House
      */
     @Override
     public void Focusing(){
         System.out.println("Owner of the house: " + getOwner());
+    }
+    
+    /**
+     * Overridden abstract getName method
+     * give the name of Class
+     */
+    @Override
+    public String getName() {
+    	return String.format("House");
     }
 
 

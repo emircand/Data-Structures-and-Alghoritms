@@ -1,4 +1,6 @@
-package com.emircand.ArrayList;
+/* *
+ * Market subclass extends Buildings superclass
+ */
 
 public class Market extends Buildings{
     private String openingTime;
@@ -8,7 +10,7 @@ public class Market extends Buildings{
     /**
      * class constructor specified with parameters
      * @param openingTime opening time of Market
-     * @param closingTime closingTÝme of Market
+     * @param closingTime closingTï¿½me of Market
      * @param owner owner of Market
      * @param side  location side on the street
      * @param position  location position on the street
@@ -54,11 +56,20 @@ public class Market extends Buildings{
     }
 
     /**
-     * Overriden abstract Focusing method
+     * Overridden abstract Focusing method
      * give the information of closingTime for Market
      */
     @Override
     public void Focusing(){
         System.out.println("The market closing at: " + getClosingTime());
+    }
+    
+    /**
+     * Overridden abstract getName method
+     * give the name of Class
+     */
+    @Override
+    public String getName() {
+    	return String.format("Market");
     }
 }
