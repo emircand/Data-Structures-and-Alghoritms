@@ -1,8 +1,16 @@
+/**
+ * MergeSort class implements Merge Sort class
+ */
 public class MergeSort {
-    // Merges two subarrays of arr[].
-    // First subarray is arr[l..m]
-    // Second subarray is arr[m+1..r]
-    void merge(int arr[], int left, int mid, int right)
+    /**
+     * Merge methods create two subarrays and compare
+     * this subarrays with each other
+     * @param arr unsorted integer array
+     * @param left first index value
+     * @param mid medium index value
+     * @param right last index value
+     */
+    private void merge(int arr[], int left, int mid, int right)
     {
         /*
         * create temporary subarrays to make comparisons
@@ -18,11 +26,7 @@ public class MergeSort {
             RightSubArray[j] = arr[mid + 1 + j];
 
         /* Merge the temp arrays */
-
-        // Initial indexes of subarrays
         int indexLeft = 0, indexRight = 0;
-
-        // Initial index of merged array
         int mergedIndex = left;
         while (indexLeft < leftSize && indexRight < rightSize) {
             if (LeftSubArray[indexLeft] <= RightSubArray[indexRight]) {
@@ -35,15 +39,11 @@ public class MergeSort {
             }
             mergedIndex++;
         }
-
-        /* Copy remaining elements of L[] if any */
         while (indexLeft < leftSize) {
             arr[mergedIndex] = LeftSubArray[indexLeft];
             indexLeft++;
             mergedIndex++;
         }
-
-        /* Copy remaining elements of R[] if any */
         while (indexRight < rightSize) {
             arr[mergedIndex] = RightSubArray[indexRight];
             indexRight++;
@@ -51,9 +51,13 @@ public class MergeSort {
         }
     }
 
-    // Main function that sorts arr[l..r] using
-    // merge()
-    void sort(int arr[], int left, int right)
+    /**
+     * sort method which recursively implements merge sort algorithm
+     * @param arr unsorted integer array
+     * @param left first index value
+     * @param right last index value
+     */
+    public void sort(int arr[], int left, int right)
     {
         if (left < right) {
             // Find the middle point
