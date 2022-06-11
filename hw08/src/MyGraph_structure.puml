@@ -1,0 +1,172 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "MyGraph",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_1143470366 { 
+   	label=MyGraph
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   MyGraph1143470366[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)MyGraph</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   graphIndex: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   map: HashMap&lt;Integer, List&lt;Edge&gt;&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   numV: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   vertexList: List&lt;Vertex&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addEdge(VertexID1: int, VertexID2: int, weight: double): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ addVertex(new_vertex: Vertex)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ edgeIterator(source: int): Iterator&lt;Edge&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ exportMatrix(): Edge[][]</TD></TR>
+<TR><TD ALIGN="LEFT" >+ filterVertices(key: String, filter: String): MyGraph</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getEdge(source: int, dest: int): Edge</TD></TR>
+<TR><TD ALIGN="LEFT" >+ insert(edge: Edge)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ isEdge(source: int, dest: int): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ newVertex(label: String, weight: double): Vertex</TD></TR>
+<TR><TD ALIGN="LEFT" >+ printGraph()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeEdge(VertexID1: int, VertexID2: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeVertex(VertexID: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeVertex(label: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_1736073788 { 
+   	label=Vertex
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Vertex1736073788[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Vertex</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   color: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   index: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   label: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   weight: double [1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_2154973 { 
+   	label=Edge
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Edge2154973[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Edge</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   dest: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   source: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   weight: double [1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+'edges    
+MyGraph1143470366 -> Edge2154973[label="map
+[0..*]"];
+MyGraph1143470366 -> Vertex1736073788[label="vertexList
+[0..*]"];
+    
+}
+@enduml

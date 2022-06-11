@@ -1,0 +1,17 @@
+1.	Compile -> Test newVertex Method -> create new Vertex object
+2.	Compile -> Test addVertex Method -> Add new Vertex to graph -> Test printGraph Method
+3.	Compile -> Test addEdge Method -> Valid Parameters
+4.	Compile -> Test addEdge Method ->  vertexID which does not exist on map
+5.	Compile -> Test addEdge Method -> same source and dest indices
+6.	Compile -> Test addEdge Method -> try to add an existing edge
+7.	Compile -> Test removeEdge Method -> valid input
+8.	Compile -> Test removeEdge Method -> try non-existing edge object
+9.	Compile -> Test removeVertex Method -> enter valid index value
+10.	Compile -> Test removeVertex Method -> enter invalid index value
+11.	Compile -> Test removeVertex Method -> enter valid label string
+12.	Compile -> Test removeVertex Method -> enter invalid label string
+13.	Compile -> Test filterVertices Method -> input set_1
+14.	Compile -> Test filterVertices Method -> input set_2
+15.	Compile -> Test exportMatrix Method -> input set_1 
+16.	Compile -> Test exportMatrix Method -> input set_2
+ 
